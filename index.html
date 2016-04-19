@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>IGNIEUS &ndash; [I]cono[G]raphic [N]otation for [I]mprovising [E]lectronic M[US]ic</title>
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.icons-1.4.5.min.css" />
+	<link rel="stylesheet" href="css/ignieus.css" />
+	<!-- <link rel="apple-touch-icon" href="images/ignieus_icon.png"/> -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1, user-scalable=no">
+	<!-- <link rel="stylesheet" href="css/DarkGrayBlue.min.css" /> -->
+	
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<script>
+		// Needed to run local due to Chrome security update
+		// http://stackoverflow.com/q/32453806/
+	    $(document).bind('mobileinit',function(){
+	        $.mobile.changePage.defaults.changeHash = false;
+	        $.mobile.hashListeningEnabled = false;
+	        $.mobile.pushStateEnabled = false;
+	    });
+	</script> 
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
+	<!-- <script src="js/jquery-ui.min.js"></script> -->
+	<script src="js/ignieus.js"></script>
+</head>
+<body>
+<div data-role="page" data-theme="b">
+	<!-- BEGIN: Markup for panel -->
+	<div data-role="panel" id="glyphs" data-position="right" data-display="overlay" data-swipe-close="false" data-theme="b" style="position: fixed">
+		<h1><a href="#content" data-rel="close" class="icon">U</a><a href="#settings" class="icon">T</a> <a href="">IGNIEUS</a></h1>
+		<h2>SONIC EVENTS</h2>
+		<div class="ignieus_panel" id="sonic">
+		</div>
+		<h2>CONTROL EVENTS</h2>
+		<div class="ignieus_panel" id="control"></div>
+		<h2>CHARS</h2>
+		<div class="ignieus_panel" id="chars"></div>
+	</div>
+	<div data-role="panel" id="settings" data-position="right" data-display="overlay" data-swipe-close="false" data-theme="b" style="position: fixed">
+		<form>
+			<h1><a href="#content" data-rel="close" class="icon">U</a><a href="#glyphs" class="icon">e</a> <a href="">IGNIEUS</a></h1>
+			<input placeholder="TITLE" type="text" name="title" id="text-1" value="" />
+			<input placeholder="AUTHOR" type="text" name="author" id="text-2" value="" />
+			<select name="slots_per_lane" id="select-choice-a" data-native-menu="false" style="width:2em">
+			    <option value="">EVENT SLOTS</option>
+			    <option value="2">2 SLOTS PER LANE</option>
+			    <option value="3">3 SLOTS PER LANE</option>
+			    <option value="4">4 SLOTS PER LANE</option>
+			    <option value="5">5 SLOTS PER LANE</option>
+			    <option value="6">6 SLOTS PER LANE</option>
+			    <option value="7">7 SLOTS PER LANE</option>
+			    <option value="8">8 SLOTS PER LANE</option>
+			    <option value="9">9 SLOTS PER LANE</option>
+			</select>
+			<h4 class="l0">LANE 1</h4>
+			<div class="lane_settings ls0">
+				<div class="leftcol">
+					<label for="activate">ACTIVE</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane0_active" id="activate" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="leftcol">
+					<label for="notes">NOTES</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane0_notes" id="notes" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="left_30">
+					<label for="lane0_chars_per_slot">CHARS PER SLOT</label>
+				</div>
+				<div class="right_70">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="lane0_chars_per_slot">
+						<input type="radio" name="lane0_char_slots" id="lane0_char_slots_a" value="0" checked="checked">
+						<label for="lane0_char_slots_a">0</label>
+						<input type="radio" name="lane0_char_slots" id="lane0_char_slots_b" value="1">
+						<label for="lane0_char_slots_b">1</label>
+						<input type="radio" name="lane0_char_slots" id="lane0_char_slots_c" value="2">
+						<label for="lane0_char_slots_c">2</label>
+						<input type="radio" name="lane0_char_slots" id="lane0_char_slots_d" value="3">
+						<label for="lane0_char_slots_d">3</label>
+					</fieldset>
+				</div>
+				<div class="left_30">
+					<label for="lane0_color">COLOR</label>
+				</div>
+				<div class="right_70 cnudge"><a href="#" class="c0 active"> &nbsp; </a> &nbsp; <a href="#" class="c1"> &nbsp; </a> &nbsp; <a href="#" class="c2"> &nbsp; </a> &nbsp; <a href="#" class="c3"> &nbsp; </a> &nbsp; <a href="#" class="c4"> &nbsp; </a>&nbsp;</div>
+			</div>
+			<h4 class="l1">LANE 2</h4>
+			<div class="lane_settings ls1">
+				<div class="leftcol">
+					<label for="activate">ACTIVE</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane1_active" id="activate" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="leftcol">
+					<label for="notes">NOTES</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane1_notes" id="notes" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="left_30">
+					<label for="lane1_chars_per_slot">CHARS PER SLOT</label>
+				</div>
+				<div class="right_70">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="lane1_chars_per_slot">
+						<input type="radio" name="lane1_char_slots" id="lane1_char_slots_a" value="0" checked="checked">
+						<label for="lane1_char_slots_a">0</label>
+						<input type="radio" name="lane1_char_slots" id="lane1_char_slots_b" value="1">
+						<label for="lane1_char_slots_b">1</label>
+						<input type="radio" name="lane1_char_slots" id="lane1_char_slots_c" value="2">
+						<label for="lane1_char_slots_c">2</label>
+						<input type="radio" name="lane1_char_slots" id="lane1_char_slots_d" value="3">
+						<label for="lane1_char_slots_d">3</label>
+					</fieldset>
+				</div>
+				<div class="left_30">
+					<label for="lane1_color">COLOR</label>
+				</div>
+				<div class="right_70 cnudge"><a href="#" class="c0"> &nbsp; </a> &nbsp; <a href="#" class="c1 active"> &nbsp; </a> &nbsp; <a href="#" class="c2"> &nbsp; </a> &nbsp; <a href="#" class="c3"> &nbsp; </a> &nbsp; <a href="#" class="c4"> &nbsp; </a>&nbsp;</div>
+			</div>
+			<h4 class="l2">LANE 3</h4>
+			<div class="lane_settings ls2">
+				<div class="leftcol">
+					<label for="activate">ACTIVE</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane2_active" id="activate" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="leftcol">
+					<label for="notes">NOTES</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane2_notes" id="notes" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="left_30">
+					<label for="lane2_chars_per_slot">CHARS PER SLOT</label>
+				</div>
+				<div class="right_70">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="lane2_chars_per_slot">
+						<input type="radio" name="lane2_char_slots" id="lane2_char_slots_a" value="0" checked="checked">
+						<label for="lane2_char_slots_a">0</label>
+						<input type="radio" name="lane2_char_slots" id="lane2_char_slots_b" value="1">
+						<label for="lane2_char_slots_b">1</label>
+						<input type="radio" name="lane2_char_slots" id="lane2_char_slots_c" value="2">
+						<label for="lane2_char_slots_c">2</label>
+						<input type="radio" name="lane2_char_slots" id="lane2_char_slots_d" value="3">
+						<label for="lane2_char_slots_d">3</label>
+					</fieldset>
+				</div>
+				<div class="left_30">
+					<label for="lane2_color">COLOR</label>
+				</div>
+				<div class="right_70 cnudge"><a href="#" class="c0"> &nbsp; </a> &nbsp; <a href="#" class="c1"> &nbsp; </a> &nbsp; <a href="#" class="c2 active"> &nbsp; </a> &nbsp; <a href="#" class="c3"> &nbsp; </a> &nbsp; <a href="#" class="c4"> &nbsp; </a>&nbsp;</div>
+			</div>
+			<h4 class="l3">LANE 4</h4>
+			<div class="lane_settings ls3">
+				<div class="leftcol">
+					<label for="activate">ACTIVE</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane3_active" id="activate" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="leftcol">
+					<label for="notes">NOTES</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane3_notes" id="notes" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="left_30">
+					<label for="lane3_chars_per_slot">CHARS PER SLOT</label>
+				</div>
+				<div class="right_70">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="lane3_chars_per_slot">
+						<input type="radio" name="lane3_char_slots" id="lane3_char_slots_a" value="0" checked="checked">
+						<label for="lane3_char_slots_a">0</label>
+						<input type="radio" name="lane3_char_slots" id="lane3_char_slots_b" value="1">
+						<label for="lane3_char_slots_b">1</label>
+						<input type="radio" name="lane3_char_slots" id="lane3_char_slots_c" value="2">
+						<label for="lane3_char_slots_c">2</label>
+						<input type="radio" name="lane3_char_slots" id="lane3_char_slots_d" value="3">
+						<label for="lane3_char_slots_d">3</label>
+					</fieldset>
+				</div>
+				<div class="left_30">
+					<label for="lane3_color">COLOR</label>
+				</div>
+				<div class="right_70 cnudge"><a href="#" class="c0"> &nbsp; </a> &nbsp; <a href="#" class="c1"> &nbsp; </a> &nbsp; <a href="#" class="c2"> &nbsp; </a> &nbsp; <a href="#" class="c3 active"> &nbsp; </a> &nbsp; <a href="#" class="c4"> &nbsp; </a>&nbsp;</div>
+			</div>
+			<h4 class="l4">LANE 5</h4>
+			<div class="lane_settings ls4">
+				<div class="leftcol">
+					<label for="activate">ACTIVE</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane4_active" id="activate" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="leftcol">
+					<label for="notes">NOTES</label>
+				</div>
+				<div class="rightcol">
+					<select name="lane4_notes" id="notes" data-role="flipswitch" data-mini="true">
+						<option value="off">OFF</option>
+						<option value="on">ON</option>
+					</select>
+				</div>
+				<div class="left_30">
+					<label for="lane4_chars_per_slot">CHARS PER SLOT</label>
+				</div>
+				<div class="right_70">
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" id="lane4_chars_per_slot">
+						<input type="radio" name="lane4_char_slots" id="lane4_char_slots_a" value="0" checked="checked">
+						<label for="lane4_char_slots_a">0</label>
+						<input type="radio" name="lane4_char_slots" id="lane4_char_slots_b" value="1">
+						<label for="lane4_char_slots_b">1</label>
+						<input type="radio" name="lane4_char_slots" id="lane4_char_slots_c" value="2">
+						<label for="lane4_char_slots_c">2</label>
+						<input type="radio" name="lane4_char_slots" id="lane4_char_slots_d" value="3">
+						<label for="lane4_char_slots_d">3</label>
+					</fieldset>
+				</div>
+				<div class="left_30">
+					<label for="lane4_color">COLOR</label>
+				</div>
+				<div class="right_70 cnudge"><a href="#" class="c0"> &nbsp; </a> &nbsp; <a href="#" class="c1"> &nbsp; </a> &nbsp; <a href="#" class="c2"> &nbsp; </a> &nbsp; <a href="#" class="c3"> &nbsp; </a> &nbsp; <a href="#" class="c4 active"> &nbsp; </a>&nbsp;</div>
+			</div>
+			<button class="ui-btn">APPLY</button>
+		</form>
+	</div>
+	<!-- END: panel -->
+
+	<!-- header -->
+	<div class="drag_style"><!-- style for appearance while dragging. leave empty --></div>
+	<!-- Fixed icons in upper left -->
+	<div id="tools"></div>
+
+	<!-- content -->
+	<div data-role="content">
+		<div class="ignieus"></div>
+	</div>
+	<!-- footer -->
+
+</div><!-- page -->
+
+</body> 
+</html>
